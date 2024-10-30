@@ -17,32 +17,20 @@
             height: auto;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
 </head>
 <body>
-    <img id="catalogImage" src="P8.jpg" usemap="#image-map" alt="Catalog Image">
+    <img src="P8.jpg" usemap="#image-map" alt="Catalog Image">
     <map name="image-map">
         <area target="_blank" alt="Shop" title="Shop" href="https://bit.ly/4a1sm4E" coords="252,189,288,151" shape="rect">
         <area target="_blank" alt="Lazada" title="Lazada" href="https://bit.ly/45RAsuf" coords="293,150,329,188" shape="rect">
         <area target="_blank" alt="Big C" title="Big C" href="https://bit.ly/46o54UL" coords="334,151,369,187" shape="rect">
     </map>
     <script>
-        function resizeMap() {
-            const img = document.getElementById('catalogImage');
-            const imgWidth = img.naturalWidth;
-            const imgHeight = img.naturalHeight;
-            const displayedWidth = img.offsetWidth;
-            const scaleFactor = displayedWidth / imgWidth;
-
-            const areas = document.querySelectorAll('area');
-            areas.forEach(area => {
-                const originalCoords = area.getAttribute('data-original-coords').split(',');
-                const scaledCoords = originalCoords.map(coord => Math.round(coord * scaleFactor));
-                area.setAttribute('coords', scaledCoords.join(','));
-            });
-        }
-
-        window.addEventListener('resize', resizeMap);
-        window.addEventListener('load', resizeMap);
+        $(document).ready(function() {
+            $('img[usemap]').rwdImageMaps();
+        });
     </script>
 </body>
 </html>
